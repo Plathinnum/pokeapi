@@ -3,6 +3,19 @@
 Plan propuesto para adoptar el fork sin interrumpir Himitsu Kichi. Cada fase termina en un estado estable y
 reversible; ninguna cambia poke-generator hasta la fase 4.
 
+> **Plan reemplazado en parte (05/10/2026).** El propietario decidió construir una **API propia**, diseñada en el
+> repositorio `plathinnum-dev` (`docs/research/`), en lugar de publicar este fork como copia de PokeAPI. A partir de
+> esa decisión:
+>
+> - **El fork no se publica.** Pasa a ser una **fuente de CSV fijada por commit** que el pipeline de `plathinnum-dev`
+>   lee para generar sus propios archivos (R2) y, más adelante, su API GraphQL.
+> - **La fase 2 (publicación propia) y la fase 4 (adopción en poke-generator) quedan reemplazadas** por las fases del
+>   plan de `plathinnum-dev` (`docs/research/10-plan-por-fases-y-decisiones.md`).
+> - **La fase 3 se reduce** a las correcciones de hechos que convenga proponer aguas arriba; las extensiones propias
+>   (traducciones, textos por forma, regulaciones de Champions, iniciales…) se curan en `plathinnum-dev` (decisión D3).
+> - **Siguen vigentes** la fase 0 (preparar el fork) y la fase 1 (paridad e IDs estables), porque el pipeline depende
+>   de un fork construible y con identificadores estables.
+
 ## Fase 0 — Preparación del fork
 
 - Añadir el remoto `upstream` (`https://github.com/PokeAPI/pokeapi.git`) y definir la cadencia de sincronización.
@@ -33,6 +46,8 @@ sprites no nulos.
 
 ## Fase 2 — Publicación propia
 
+> **Reemplazada (05/10/2026)** por la API propia de `plathinnum-dev`. Se conserva como registro del análisis.
+
 - Elegir la opción de publicación (recomendada: JSON estático en Cloudflare, ver
   [02](02-compatibilidad-poke-generator.md#opciones-de-publicación)).
 - Workflow de GitHub Actions propio: build de la base, `ditto` con el dominio final, verificación de paridad y
@@ -49,6 +64,9 @@ sprites no nulos.
 
 ## Fase 3 — Migración de extensiones (en el fork)
 
+> **Reducida (05/10/2026):** sólo correcciones de hechos que convenga proponer a PokeAPI original. El resto se cura en
+> `plathinnum-dev`.
+
 Orden sugerido, de menor a mayor riesgo (detalle en [03](03-extensiones-a-migrar.md)):
 
 1. Correcciones de datos (punto 7) y nombres en español faltantes.
@@ -64,6 +82,8 @@ Cada paso es una rama corta del fork con pruebas en `pokemon_v2/tests.py` (o el 
 una entrada en un registro de divergencias de esta carpeta.
 
 ## Fase 4 — Adopción en poke-generator
+
+> **Reemplazada (05/10/2026):** poke-generator adoptará la API propia de `plathinnum-dev`, no este fork.
 
 En una rama de poke-generator, después de publicar el fork:
 
