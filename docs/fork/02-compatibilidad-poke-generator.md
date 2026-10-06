@@ -75,6 +75,10 @@ Además descarga en runtime cuatro CSV **directamente de la rama `master` de `Po
 
 ## Opciones de publicación
 
+> **Descartadas (05/10/2026).** El fork no se publicará: la app migrará a la API propia diseñada en `plathinnum-dev`
+> (ver la nota al inicio de [04](04-plan-y-decisiones-pendientes.md)). Las opciones se conservan como registro del
+> análisis.
+
 | Opción                                   | Descripción                                                                                                                         | Ventajas                                                                                 | Costes y riesgos                                                                                                                   |
 | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | **A. JSON estático en Cloudflare** (recomendada) | CI construye la base, recorre la API con `ditto` usando el dominio final y publica los JSON. Un Worker resuelve nombres, barra final y `limit`/`offset`. | Igual que PokeAPI original; sin servidor ni base en producción; encaja con el despliegue actual de la app en Cloudflare Workers. | ~15.800 archivos JSON: cabe en el límite gratuito de Workers Static Assets (20.000 por versión; 100.000 en el plan de pago). Las peticiones que pasen por el Worker cuentan para el límite gratuito de 100.000 diarias. Hay que diseñar el ruteo. |
